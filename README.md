@@ -1,6 +1,6 @@
 # Vue主要的学习笔记2
 
-> 1、主要学习Vue的相关笔记
+> 1、This is the main learning note related to Vue
 
       1、认识组件
 
@@ -10,4 +10,8 @@
 
       4、组件之间的传递
       
-  >2、继续更新笔记
+ >2、继续更新笔记
+     
+      1、Router
+      
+      2、。。。。。。
