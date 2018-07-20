@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-组件2</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <vv-ddd></vv-ddd>
+</div>
+<template id="ddd">
+    <h3>{{msg}}</h3>
+    <h4>这是接收子组件传递的数据:{{msgAa}}</h4>
+    <aaa @child-receive="receive"></aaa>
+</template>
+<template id="ccc">
+    <h3>我是子组件</h3>
+    <input type="button" value="传递数据到父组件" @click="send">
+</template>
+<script>
+    /// 组件之间的数据传递
+    /// 1、创建一个父组件
+    /// 2、创建一个子组件
+    /// 3、子组件通过this.$emit("child-receive",数据)发送数据到父组件 “child-receive”是自定义的
+    new Vue({
+        el: "#box",
+        components: {
+            'vv-ddd': {
+                data() {
+                    return {
+                        msg: "hi,我是父组件",
+                        msgAa: '接收数据之前'
+                    }
+                },
+                methods: {
+                    receive(msg1) {
+                        this.msgAa = msg1;
+                    }
+                },
+                template: '#ddd',
+                components: {
+                    "aaa": {
+                        data() {
+                            return {
+                                msg1: "cccccc传递的数据",
+                            }
+                        },
+                        methods: {
+                            send() {
+                                this.$emit('child-receive', this.msg1)
+                            }
+                        },
+                        template: '#ccc'
+                    },
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

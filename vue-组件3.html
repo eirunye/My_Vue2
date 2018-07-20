@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-组件2</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <ddd></ddd>
+</div>
+<script>
+    //// 写在new Vue里面的自定义组件
+    /// 1、创建(自定义一个)一个标签如：ddd
+    /// 2、添加 components组件
+    /// 2、{"ddd"{}}//自定义标签
+    /// 3、添加一个template
+    /// 4、data是一个带返回值的function
+    new Vue({
+        el: "#box",
+        components: {
+            'ddd': {
+                data() {
+                    return {
+                        msg: "你好，my Vue",
+                    }
+                },
+                methods: {
+                    change() {
+                        this.msg = "helll,认识你很高兴!"
+                    }
+                },
+                template: '<h3 @click="change">{{msg}}</h3>'
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

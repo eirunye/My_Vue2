@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-引用动画</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+
+<style>
+
+    #change {
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+
+    .anim-transition {
+        transition: 1s all ease;
+    }
+
+    .anim-enter {
+        opacity: 0;
+    }
+
+    .anim-leave {
+        opacity: 0;
+        transform: translateX(200px);
+    }
+
+</style>
+<body>
+
+<div id="box">
+    <input type="button" value="动画" @click="toggle">
+
+    <div id="change" v-show="animation" transition="anim"></div>
+
+    <script>
+        ///transition:自定一个属性 anim
+        new Vue({
+            el: "#box",
+            data: {
+                animation: true
+            },
+            methods: {
+                toggle() {
+                    this.animation = !this.animation
+                }
+            }
+        });
+
+
+    </script>
+</div>
+
+</body>
+</html>

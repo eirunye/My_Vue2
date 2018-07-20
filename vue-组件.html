@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-组件</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <ddd></ddd>
+</div>
+<script>
+    /// 局部组件
+    /// 1、创建(自定义一个)一个标签如：ddd
+    /// 2、用继承的方式进行即：Vue.extend()
+    /// 3、添加一个template
+    /// 4、data是一个带返回值的function
+    /// 5、在new Vue里面添加一个组件components
+    /// 6、将自定义的标签引用到继承下的对象
+
+
+    var DDD = Vue.extend({
+        template: '<h3 v-show="show" @click="change">{{msg}}</h3>',
+        data() {
+            return {
+                msg: "dddddd",
+                show: true
+            }
+        },
+        methods: {
+            change() {
+                this.msg="hahaha"
+            }
+        }
+    });
+    new Vue({
+        el: "#box",
+        components: {
+
+            'ddd': DDD
+        }
+    })
+</script>
+
+</body>
+</html>

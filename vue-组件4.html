@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-组件2</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <vv-ddd></vv-ddd>
+</div>
+<template id="ddd">
+    <h3 @click="change">{{msg}}</h3>
+</template>
+<script>
+    //// 写在new Vue里面的自定义组件  引用了template
+    /// 1、创建(自定义一个)一个标签如：vv-ddd
+    /// 2、添加 components组件
+    /// 2、{"ddd"{}}//自定义标签
+    /// 3、添加一个template:"#ddd" (id或者class自定义)
+    /// 4、data是一个带返回值的function
+    /// 5、创建一个template组件标签 id为"ddd"，(id自定义，或者是class) 14行，必须和38行id或者class相同
+    new Vue({
+        el: "#box",
+        components: {
+            'vv-ddd': {
+                data() {
+                    return {
+                        msg: "你好，my Vue",
+                    }
+                },
+                methods: {
+                    change() {
+                        this.msg = "helll,认识你很高兴!"
+                    }
+                },
+                template: '#ddd'
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

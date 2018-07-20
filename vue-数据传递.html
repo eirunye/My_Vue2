@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-组件2</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <vv-ddd></vv-ddd>
+</div>
+<template id="ddd">
+    <bbb :dd="msg"></bbb>
+    <ccc :dd="msg" :my-ccc="msg1"></ccc>
+    <aaa :dd="msg" :my-aaa="msg2"></aaa>
+</template>
+<script>
+    /// 组件之间的数据传递
+    /// 1、创建一个父组件
+    /// 2、创建一个子组件
+    /// 3、通过props接收数据
+    new Vue({
+        el: "#box",
+        components: {
+            'vv-ddd': {
+                data() {
+                    return {
+                        msg: "hi,我是父组件",
+                        msg1: "hello,我是父组件1",
+                        msg2: 120
+                    }
+                },
+                template: '#ddd',
+                components: {
+                    'bbb': {
+                        props: ['dd'],//重点props*
+                        template: '<h3>我是子组件->收到：{{dd}}</h3>'
+                    },
+                    "ccc": {
+                        props: ['dd', 'myCcc'],//多个的时候表达方式"-"必须用驼峰命名规则myCcc
+                        template: '<h3>我是另一个子组件-->接收到：{{dd}}<br>{{myCcc}}</h3>'
+                    },
+                    'aaa': {
+                        props: {//json的表达式方式，类型不对就报错
+                            'dd': String,
+                            'myAaa': Number
+                        },
+                        template: '<h3>我是另一个子组件-->接收到：{{dd}}<br>{{myAaa}}</h3>'
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

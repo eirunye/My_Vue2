@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-引用动画</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+</head>
+
+<style>
+
+    #change {
+        width: 100px;
+        height: 100px;
+        background: blue;
+        margin-top: 20px;
+    }
+
+    body {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+</style>
+<body>
+
+<div id="box">
+    <input type="button" value="动画" @click="toggle">
+
+    <div id="change" class="animated" v-show="animation" transition="maneuver"></div>
+
+    <script>
+        /// 1、添加一个css文件 <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+        /// 2、transition:自定一个属性 maneuver
+        /// 3、添加一个组件 transitions
+        /// 4、编写各种动画
+        new Vue({
+            el: "#box",
+            data: {
+                animation: true
+            },
+            methods: {
+                toggle() {
+                    this.animation = !this.animation
+                }
+            },
+            transitions: {
+                maneuver: {
+                    ///这里有很多总动画 如：fadeInLeft，fadeOutRight
+                    enterClass: 'bounceInLeft',
+                    leaveClass: 'bounceOutRight',
+                }
+            }
+        });
+
+
+    </script>
+</div>
+
+</body>
+</html>
