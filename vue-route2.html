@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由2.0</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
+</head>
+<body>
+
+<div id="box">
+
+    <h1>我的路由笔记APP</h1>
+
+    <div>
+        <router-link to="/home">首页</router-link>
+        <router-link to="/news">新闻</router-link>
+    </div>
+
+    <div>
+        <router-view></router-view>
+    </div>
+
+</div>
+
+<script>
+
+    //1、自定义组件
+    const Home = {template: '<div>我是主页</div>'}
+    const News = {template: '<div>我是新闻</div>'}
+
+    //2、定义路由
+    const routes = [
+        {path: '/home', component: Home},
+        {path: '/news', component: News}
+    ]
+    //3、创建一个路由对象,引用定义（2实例）的路由
+    const router = new VueRouter({
+        routes
+    })
+
+    //4、创建和挂载根实例
+    const app = new Vue({
+        router
+    }).$mount('#box');
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
