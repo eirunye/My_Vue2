@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由2.0</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
+</head>
+<body>
+
+<div id="box">
+
+    <h1>我的路由笔记(Router嵌套)</h1>
+    <div>
+        <router-link to="/home">首页</router-link>
+        <router-link to="/user">用户</router-link>
+
+    </div>
+
+    <div>
+        <router-view></router-view>
+    </div>
+
+</div>
+
+<script>
+
+    const Home = {
+        template: "<h3>我是主页</h3>"
+    }
+    const User = {
+        template: `
+          <div>
+          <h3>我是用户</h3>
+          <router-link to="/user/username">用户名</router-link>
+          <router-view></router-view>
+          </div>
+        `
+    }
+
+    const UserInfo = {
+        template: "<h3>我是张三</h3>"
+    };
+    // const routes = [
+    //     {
+    //         path: "/home", component: Home
+    //     },
+    //     {
+    //         path: "/user", component: User,
+    //         children: [{
+    //             //不能这么写:path: "/username"====>不能添加“/”
+    //             path: "username", component: UserInfo
+    //         }]
+    //     }
+    // ]
+
+    const router = new VueRouter({
+        routes:[
+            {
+                path: "/home", component: Home
+            },
+            {
+                path: "/user", component: User,
+                children: [{
+                    //不能这么写:path: "/username"====>不能添加“/”
+                    path: "username", component: UserInfo
+                }]
+            }
+        ]
+    });
+
+    new Vue({
+        el: "#box",
+        router
+    })
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

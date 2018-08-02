@@ -11,11 +11,11 @@
     <ddd></ddd>
 </div>
 <script>
+    /// 全局组件
     /// 1、创建(自定义一个)一个标签如：ddd
     /// 2、Vue.component("自定义标签",{template:''})
     /// 3、添加一个template
     /// 4、data是一个带返回值的function
-
     Vue.component('ddd', {
         template: '<h3 @click="change">{{msg}}</h3>',
         data() {

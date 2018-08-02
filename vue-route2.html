@@ -6,6 +6,12 @@
     <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
 </head>
+<style>
+    .router-link-active {
+        font-size: 20px;
+        color: red;
+    }
+</style>
 <body>
 
 <div id="box">
@@ -32,7 +38,10 @@
     //2、定义路由
     const routes = [
         {path: '/home', component: Home},
-        {path: '/news', component: News}
+        {path: '/news', component: News},
+        {
+            path: "*", redirect: '/home'
+        }
     ]
     //3、创建一个路由对象,引用定义（2实例）的路由
     const router = new VueRouter({
